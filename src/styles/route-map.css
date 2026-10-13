@@ -1,0 +1,36 @@
+.detail-route-map { position: relative; overflow: hidden; margin: 0; min-width: 0; padding: 12px; border: 1px solid #ffffff20; border-radius: 20px; background: radial-gradient(ellipse at 35% 45%, #17384e, #0c2233 75%); box-shadow: 0 18px 45px -25px #0008, inset 0 1px 0 #ffffff08; color: white; }
+.route-map-canvas { display: block; width: 100%; height: auto; }
+.route-map-line { fill: none; stroke-width: 2; opacity: .65; }
+.route-map-flow { fill: none; stroke: #f6a4a4; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 25; animation: route-map-travel 3s linear infinite; opacity: .85; }
+.route-map-flow--1 { animation-delay: -.75s; }
+.route-map-flow--2 { animation-delay: -1.5s; }
+.route-map-flow--3 { animation-delay: -2.25s; }
+.route-map-card { fill: #163348; stroke: #365164; stroke-width: 1; transition: fill .2s ease, stroke .2s ease; }
+.route-map-destination:hover .route-map-card, .route-map-destination:focus-visible .route-map-card { fill: #214258; stroke: #f39a9a; stroke-width: 2; }
+.route-map-destination:focus-visible { outline: none; }
+.route-map-pin-halo { fill: #102b3f; stroke: #ef70704d; stroke-width: 1; }
+.route-map-pin { fill: #ef8585; }
+.route-map-label { fill: #f1f5f8; font-size: 21px; font-weight: 650; letter-spacing: -.025em; }
+.route-map-note { fill: #a8bdcc; font-size: 14px; font-weight: 400; }
+.route-map-arrow { fill: none; stroke: #e78c8c; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.route-map-origin-card { fill: #203e52; stroke: #607d90; stroke-width: 1; }
+.route-map-hub-halo { fill: #ef707014; stroke: #ef70704d; stroke-width: 1; }
+.route-map-hub { fill: #f39191; stroke: #ffe0e0; stroke-width: 2; }
+.detail-route-map figcaption { display: grid; gap: 5px; margin: 0 14px; padding: 14px 0 6px; border-top: 1px solid #ffffff16; color: #c5d4df; font-size: 11px; line-height: 1.6; }
+.detail-route-map figcaption small { color: #91a8b9; font-size: 9px; }
+.detail-route-map:hover .route-map-flow, .detail-route-map:focus-within .route-map-flow { animation-play-state: paused; }
+@keyframes route-map-travel { to { stroke-dashoffset: -60; } }
+@media (max-width: 767px) {
+  .detail-route-map { padding: 8px; border-radius: 16px; }
+  .detail-route-map figcaption { margin-inline: 8px; font-size: 10px; }
+  .detail-route-map figcaption small { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-map-flow { display: none; }
+  .route-map-card { transition: none; }
+}
+@media (max-width: 600px) {
+  .route-map-destination .route-map-label { font-size: 28px; transform: translateY(9px); }
+  .route-map-destination .route-map-note, .route-map-arrow { display: none; }
+  .route-map-origin-card ~ .route-map-note { font-size: 20px; }
+}

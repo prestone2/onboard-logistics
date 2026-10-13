@@ -1,0 +1,61 @@
+/* Phase 1C uses the established homepage typography and container grid. */
+.home-fleet { background: var(--ol-navy); color: var(--ol-white); }
+.home-fleet .home-eyebrow { color: #ef7070; }
+.fleet-split, .safety-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 5vw, 72px); align-items: center; }
+.completion-description { font-size: 15px; line-height: 1.8; margin-top: 22px; color: var(--ol-muted); max-width: 600px; }
+.home-fleet .completion-description { color: #b9c6d0; }
+.fleet-capabilities, .safety-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; list-style: none; padding: 0; margin: 26px 0 16px; }
+.fleet-capabilities li, .safety-controls li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; padding-block: 16px; border-top: 1px solid var(--ol-border); }
+.fleet-capabilities li { border-color: #ffffff24; }
+.control-number { font-size: 11px; letter-spacing: .06em; color: var(--ol-red); padding-top: 4px; }
+.home-fleet .control-number { color: #ef7070; }
+.fleet-capabilities h3, .safety-controls h3 { margin: 0; font-size: 15px; line-height: 1.4; font-weight: 600; letter-spacing: -.015em; }
+.fleet-capabilities p, .safety-controls p { font-size: 12px; line-height: 1.75; color: var(--ol-muted); margin-top: 7px; max-width: 460px; }
+.fleet-capabilities p { color: #b9c6d0; }
+.home-fleet .text-link { color: #e1e7ed; }
+.home-fleet .text-link:hover { color: #ef9090; }
+.fleet-visual, .safety-visual { min-width: 0; margin: 0; }
+.fleet-visual img, .safety-visual img { width: 100%; height: auto; aspect-ratio: 1.25; max-height: 520px; object-fit: cover; }
+.fleet-visual img { object-position: 52% center; }
+.safety-visual img { object-position: 62% center; }
+.fleet-visual figcaption, .safety-visual figcaption { font-size: 11px; line-height: 1.7; padding-block: 12px; border-bottom: 1px solid var(--ol-border); color: var(--ol-muted); }
+.fleet-visual figcaption { border-color: #ffffff24; color: #b9c6d0; }
+.home-safety { background: var(--ol-white); }
+.enterprise-quote { background: var(--ol-charcoal); color: var(--ol-white); }
+.quote-rule { width: 48px; height: 3px; background: #ef7070; margin-bottom: 38px; }
+.quote-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(36px, 5vw, 72px); }
+.enterprise-quote .home-eyebrow { color: #ef9090; }
+.enterprise-quote .home-heading { max-width: 600px; }
+.enterprise-quote .completion-description { color: #d0d3d8; margin-top: 0; }
+.quote-actions { display: flex; align-items: flex-start; flex-direction: column; gap: 13px; margin-top: 28px; }
+.quote-actions .text-link { color: #e5e7eb; }
+.quote-actions .text-link:hover { color: #ef9090; }
+@media (max-width: 1100px) {
+  .fleet-split, .safety-split, .quote-layout { gap: 40px; }
+  .fleet-visual img, .safety-visual img { aspect-ratio: 1.15; }
+}
+@media (max-width: 899px) {
+  .fleet-split, .safety-split, .quote-layout { grid-template-columns: minmax(0, 1fr); gap: 38px; }
+  .fleet-copy, .safety-copy { max-width: 680px; }
+  .fleet-visual img, .safety-visual img { height: auto; aspect-ratio: 1.6; }
+  .quote-actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 26px; }
+}
+@media (max-width: 767px) {
+  .completion-description { font-size: 14px; line-height: 1.85; }
+  .fleet-capabilities, .safety-controls { column-gap: 18px; }
+  .fleet-capabilities li, .safety-controls li { gap: 8px; padding-block: 16px; }
+  .fleet-capabilities h3, .safety-controls h3 { font-size: 14px; }
+  .fleet-capabilities p, .safety-controls p { font-size: 12px; }
+  .fleet-visual img, .safety-visual img { aspect-ratio: 1.5; }
+  .safety-copy { grid-row: 1; }
+  .fleet-visual figcaption, .safety-visual figcaption { font-size: 10px; }
+  .quote-rule { margin-bottom: 29px; }
+  .quote-layout { gap: 25px; }
+  .quote-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .quote-actions .button { padding-inline: 15px; font-size: 12px; gap: 12px; justify-content: space-between; }
+  .quote-actions .text-link { justify-content: space-between; font-size: 12px; }
+}
+
+@media (max-width: 380px) {
+  .fleet-capabilities, .safety-controls { grid-template-columns: minmax(0, 1fr); }
+}
