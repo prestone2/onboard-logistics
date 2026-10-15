@@ -8,9 +8,13 @@ export const contactPage: CorporatePageData = {
   seo: { title: 'Contact Onboard Logistics Ltd | Uganda', description: 'Contact Onboard Logistics Ltd in Kampala, Uganda, about freight movements, clearing requirements and regional logistics partnerships.' },
 }
 
-// TODO(client verification): confirm the physical office address, public phone
-// numbers and email addresses before displaying contact details.
-export const contactLocation = 'Kampala, Uganda'
+// Address transcribed from the supplied “OL Logo final.pdf”.
+export const contactAddress = {
+  street: 'Plot 3182, Kasangati',
+  postal: 'P.O. Box 6281',
+  locality: 'Kampala',
+  country: 'Uganda',
+} as const
 export const contactSubjects = [
   { value: 'freight', label: 'Freight Enquiry' },
   { value: 'clearing', label: 'Clearing & Forwarding' },
