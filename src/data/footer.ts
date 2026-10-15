@@ -3,8 +3,6 @@ import type { FooterLinkGroup, SiteLink } from '../types/home'
 export const footerContent = {
   positioning: 'Integrated regional freight, clearing and logistics execution across East and Central Africa.',
   contactTitle: 'Contact',
-  // Supplied city-level location only; confirm the office address before launch.
-  location: 'Kampala, Uganda',
 } as const
 
 export const footerLinks: readonly FooterLinkGroup[] = [

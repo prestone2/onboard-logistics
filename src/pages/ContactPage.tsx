@@ -3,7 +3,7 @@ import { SEO } from '../components/ui/SEO'
 import { Container } from '../components/ui/Container'
 import { InternalPageHero } from '../components/layout/InternalPageHero'
 import { ContactEnquiryForm } from '../components/forms/ContactEnquiryForm'
-import { contactPage, contactLocation } from '../data/contact'
+import { contactPage, contactAddress } from '../data/contact'
 
 export default function ContactPage() {
   const [searchParams] = useSearchParams()
@@ -13,7 +13,7 @@ export default function ContactPage() {
       <SEO {...contactPage.seo} />
       <InternalPageHero {...contactPage.hero} />
       <section className="contact-section" aria-labelledby="contact-context-title"><Container className="contact-layout">
-        <aside className="contact-context"><h2 className="corporate-heading" id="contact-context-title">Let’s Talk About Your Requirements.</h2><p className="corporate-prose">Tell us about your cargo, route or question. Our team will help identify the support and information you need.</p><address><span>Location</span><strong>{contactLocation}</strong></address></aside>
+        <aside className="contact-context"><h2 className="corporate-heading" id="contact-context-title">Let’s Talk About Your Requirements.</h2><p className="corporate-prose">Tell us about your cargo, route or question. Our team will help identify the support and information you need.</p><address><span>Office address</span><strong>{contactAddress.street}</strong></address><address><span>Postal address</span><strong>{contactAddress.postal}<br />{contactAddress.locality}, {contactAddress.country}</strong></address></aside>
         <ContactEnquiryForm careerEnquiry={careerEnquiry} />
       </Container></section>
     </>

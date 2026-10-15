@@ -1,4 +1,5 @@
 import { company } from '../data/company'
+import { contactAddress } from '../data/contact'
 import { routeMetadata } from '../data/siteMetadata'
 import { absoluteSiteUrl } from './site'
 
@@ -17,6 +18,13 @@ export function structuredDataForPath(path: string) {
         name: company.name,
         url: absoluteSiteUrl('/'),
         logo: absoluteSiteUrl('/brand/onboard-logistics-logo.png'),
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: contactAddress.street,
+          postOfficeBoxNumber: contactAddress.postal.replace('P.O. Box ', ''),
+          addressLocality: contactAddress.locality,
+          addressCountry: 'UG',
+        },
       },
       {
         '@context': 'https://schema.org',
