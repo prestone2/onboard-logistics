@@ -11,7 +11,7 @@ export default function ServicesPage() {
   return (
     <>
       <SEO {...servicesPage.seo} />
-      <InternalPageHero {...servicesPage.hero} image={pageImages.cargo} breadcrumbLabel="Services" />
+      <InternalPageHero {...servicesPage.hero} image={pageImages.cargo} />
       <ServiceExplorer />
       <section className="corporate-section corporate-dark" aria-labelledby="vetting-title"><Container>
         <div className="corporate-section-intro"><div><h2 className="corporate-heading" id="vetting-title">{vettingIntro.title}</h2></div><p className="corporate-prose">{vettingIntro.description}</p></div>

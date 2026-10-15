@@ -16,7 +16,7 @@ export function Header() {
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
   return (
-    <header className={`site-header site-header--solid${scrolled ? ' site-header--scrolled' : ''}`}>
+    <header className={`site-header ${pathname === '/' && !scrolled ? 'site-header--overlay' : 'site-header--solid'}${scrolled ? ' site-header--scrolled' : ''}`}>
       <Container className="header-inner">
         <Link className="brand" to="/" aria-label="Onboard Logistics Ltd — home">
           <img src={logo} width="100" height="78" alt="Onboard Logistics Ltd" />

@@ -10,7 +10,7 @@ export default function CareersPage() {
   return (
     <>
       <SEO {...careersPage.seo} />
-      <InternalPageHero {...careersPage.hero} breadcrumbLabel="Careers" />
+      <InternalPageHero {...careersPage.hero} />
       <section className="corporate-section corporate-careers" aria-labelledby="working-at-onboard-title"><Container className="careers-story">
         <div><h2 className="corporate-heading" id="working-at-onboard-title">{workingAtOnboard.title}</h2></div><p className="corporate-prose">{workingAtOnboard.description}</p>
       </Container></section>

@@ -1,12 +1,6 @@
 /* Phase 2A: shared corporate page patterns, scoped away from the homepage. */
 .internal-hero { padding-block: 148px 76px; background: var(--ol-navy); color: white; }
 .internal-hero--light { background: var(--ol-off-white); color: var(--ol-ink); border-bottom: 1px solid var(--ol-border); }
-.breadcrumbs { margin-bottom: 40px; font-size: 11px; line-height: 1.8; color: #b9c6d0; }
-.internal-hero--light .breadcrumbs { color: var(--ol-muted); }
-.breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 14px; list-style: none; margin: 0; padding: 0; }
-.breadcrumbs li { display: flex; gap: 14px; align-items: baseline; }
-.breadcrumbs a { display: inline-block; padding-block: 5px; }
-.breadcrumbs a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .internal-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
 .internal-hero-grid--image { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: clamp(40px, 6vw, 90px); }
 .internal-hero .eyebrow { color: #ef9090; line-height: 1.6; margin-bottom: 24px; }
@@ -93,7 +87,6 @@
 }
 @media (max-width: 767px) {
   .internal-hero { padding-block: 115px 55px; }
-  .breadcrumbs { margin-bottom: 28px; font-size: 10px; }
   .internal-hero h1 { font-size: clamp(36px, 8.5vw, 52px); }
   .internal-hero .eyebrow { font-size: 10px; letter-spacing: .13em; margin-bottom: 20px; }
   .internal-hero-intro { font-size: 14px; line-height: 1.85; margin-top: 23px; }

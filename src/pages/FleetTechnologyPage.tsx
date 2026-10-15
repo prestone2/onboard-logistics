@@ -11,7 +11,7 @@ export default function FleetTechnologyPage() {
   return (
     <>
       <SEO {...fleetPage.seo} />
-      <InternalPageHero {...fleetPage.hero} variant="light" image={pageImages.telematics} breadcrumbLabel="Fleet & Technology" />
+      <InternalPageHero {...fleetPage.hero} variant="light" image={pageImages.telematics} />
       <section className="corporate-section" aria-labelledby="fleet-control-title"><Container>
         <div className="corporate-section-intro"><div><h2 className="corporate-heading" id="fleet-control-title">{fleetControlIntro.title}</h2></div><p className="corporate-prose">{fleetControlIntro.description}</p></div>
         <dl className="fleet-control-register">{fleetControls.map(control => <div key={control.id}><dt>{control.title}</dt><dd>{control.description}</dd></div>)}</dl>

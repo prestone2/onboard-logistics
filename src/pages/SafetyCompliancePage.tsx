@@ -11,7 +11,7 @@ export default function SafetyCompliancePage() {
   return (
     <>
       <SEO {...safetyPage.seo} />
-      <InternalPageHero {...safetyPage.hero} breadcrumbLabel="Safety & Compliance" />
+      <InternalPageHero {...safetyPage.hero} />
       <section className="corporate-section" aria-labelledby="framework-title"><Container>
         <h2 className="corporate-heading" id="framework-title">{safetyFrameworkIntro.title}</h2><EditorialList items={safetyFramework} />
       </Container></section>

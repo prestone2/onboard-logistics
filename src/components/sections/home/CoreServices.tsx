@@ -1,43 +1,27 @@
 import { motion } from 'framer-motion'
-import { useScrollReveal } from '../../ui/useScrollReveal'
-import { ArrowUpRight } from 'lucide-react'
+import { Truck, FileCheck2, PackageOpen, Network, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Container } from '../../ui/Container'
+import { useScrollReveal } from '../../ui/useScrollReveal'
 import { homeServices, servicesIntro } from '../../../data/home'
 import type { HomeService } from '../../../types/home'
 import { pageImages } from '../../../data/pageImages'
 
-function ServiceContent({ service }: { service: HomeService }) {
-  return (
-    <>
-      <h3>{service.title}</h3>
-      <p className="service-description">{service.description}</p>
-      <Link className="text-link" to={service.href} aria-label={service.linkLabel}>View service<ArrowUpRight size={17} aria-hidden="true" /></Link>
-    </>
-  )
-}
-
+const icons = [Truck, FileCheck2, PackageOpen, Network]
 export function CoreServices() {
   const reveal = useScrollReveal()
-  const [featuredService, ...otherServices] = homeServices
   return (
-    <section className="home-services home-section" aria-labelledby="services-title">
-      <Container>
-        <div className="home-section-intro">
-          <div><h2 className="home-heading" id="services-title">{servicesIntro.title}</h2></div>
-          <p className="home-intro-description">{servicesIntro.description}</p>
-        </div>
-        <motion.div className="services-editorial" {...reveal}>
-          {featuredService && <article className="service-featured">
-            <div className="service-image"><img src={pageImages.port.src} width={pageImages.port.width} height={pageImages.port.height} loading="lazy" decoding="async" alt={pageImages.port.alt} /></div>
-            <span className="service-number" aria-hidden="true">{featuredService.number}</span>
-            <ServiceContent service={featuredService} />
-          </article>}
-          <div className="service-rows">
-            {otherServices.map(service => <article className="service-row" key={service.id}><span className="service-number" aria-hidden="true">{service.number}</span><div><ServiceContent service={service} /></div></article>)}
-          </div>
-        </motion.div>
-      </Container>
-    </section>
+    <section className="home-services home-section" aria-labelledby="services-title"><Container>
+      <div className="logis-section-title"><span className="logis-title-shadow" aria-hidden="true">Services</span><h2 className="home-heading" id="services-title">{servicesIntro.title}</h2><p>{servicesIntro.description}</p></div>
+      <div className="services-showcase">
+        <motion.figure className="services-photo" {...reveal}><img src={pageImages.port.src} width={pageImages.port.width} height={pageImages.port.height} alt={pageImages.port.alt} loading="lazy" decoding="async" /><figcaption>From the port to your destination.</figcaption></motion.figure>
+        <div className="services-card-grid">{homeServices.map((service, index) => <ServiceCard key={service.id} service={service} index={index} />)}</div>
+      </div>
+    </Container></section>
   )
+}
+function ServiceCard({ service, index }: { service: HomeService; index: number }) {
+  const reveal = useScrollReveal(index * .06)
+  const Icon = icons[index]
+  return <motion.article className="logis-service-card" {...reveal}><Icon size={34} strokeWidth={1.5} aria-hidden="true" /><h3>{service.title}</h3><p>{service.description}</p><Link className="text-link" to={service.href} aria-label={service.linkLabel}>View service<ArrowRight size={17} aria-hidden="true" /></Link></motion.article>
 }

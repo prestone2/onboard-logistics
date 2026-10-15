@@ -1,0 +1,44 @@
+.hero-carousel { position: relative; isolation: isolate; overflow: hidden; background: var(--ol-navy); color: white; }
+.hero-slides, .hero-slide, .hero-slide img, .hero-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-slides { z-index: -3; }
+.hero-slide { opacity: 0; z-index: 0; transition: opacity 1s ease; }
+.hero-slide.is-active { opacity: 1; z-index: 1; }
+.hero-slide img { object-fit: cover; object-position: center 55%; transform: scale(1.035); animation: hero-camera 7s ease-out both; animation-play-state: paused; }
+.hero-carousel--playing .hero-slide.is-active img { animation-play-state: running; }
+.hero-overlay { z-index: -1; background: linear-gradient(90deg, #061321ed 0%, #061321d4 35%, #06132160 72%, #06132120), linear-gradient(180deg, #0e1d3455, transparent 30%, #0e1d3470); }
+.hero-container { position: relative; min-height: 760px; display: flex; flex-direction: column; justify-content: center; padding-top: 155px; padding-bottom: 26px; }
+.hero-content { max-width: 970px; min-width: 0; padding-top: 38px; padding-bottom: 90px; }
+.hero h1 { font-size: clamp(38px, 4vw, 58px); line-height: 1.14; font-weight: 700; letter-spacing: -.035em; }
+.hero h1 span { color: #ef8585; }
+.hero-description { max-width: 600px; font-size: 14px; line-height: 1.9; margin-top: 28px; color: #d3dbe5; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 30px; }
+.hero-secondary { display: inline-flex; align-items: center; gap: 15px; font-size: 12px; font-weight: 600; padding: 15px 0; }
+.hero-secondary:hover { color: #ef8585; }
+.hero-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 20px; border-top: 1px solid #ffffff30; }
+.hero-caption { display: grid; gap: 7px; }
+.hero-caption strong { font-size: 12px; font-weight: 600; line-height: 1.5; color: #e2e9f1; }
+.hero-caption > span:not(.sr-only) { font-size: 10px; color: #b8c5d7; }
+.hero-controls, .hero-indicators { display: flex; align-items: center; gap: 8px; }
+.hero-controls button { border: 1px solid #ffffff38; border-radius: 4px; background: #0e1d3438; color: white; min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: 0; cursor: pointer; transition: background .2s, border-color .2s; }
+.hero-controls button:hover { background: #ffffff15; border-color: #ffffffb0; }
+.hero-controls button:focus-visible { outline: 3px solid #ef8585; outline-offset: 3px; }
+.hero-controls .hero-indicator { border: 0; background: transparent; min-width: 28px; }
+.hero-indicator span { display: block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff65; transition: width .3s, background .3s; }
+.hero-indicator[aria-current='true'] span { width: 22px; border-radius: 4px; background: #ef8585; }
+.hero-playback { margin-left: 6px; }
+@keyframes hero-camera { from { transform: scale(1.035); } to { transform: scale(1.09); } }
+@media (max-width: 899px) { .hero-container { min-height: 780px; padding-top: 132px; } .hero-content { padding-bottom: 65px; } .hero h1 { font-size: 40px; } }
+@media (max-width: 767px) {
+  .hero-container { min-height: 810px; padding-top: 120px; padding-bottom: 24px; }
+  .hero-content { padding-top: 24px; padding-bottom: 50px; }
+  .hero h1 { font-size: clamp(29px, 7.4vw, 37px); }
+  .hero-description { font-size: 13px; line-height: 1.85; margin-top: 23px; }
+  .hero-overlay { background: linear-gradient(90deg, #061321e8, #061321aa), linear-gradient(180deg, #06132120, #06132160); }
+  .hero-slide img { object-position: 70% center; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 6px; margin-top: 24px; }
+  .hero-actions .button, .hero-secondary { justify-content: space-between; }
+  .hero-footer { flex-wrap: wrap; gap: 14px; }
+  .hero-controls { gap: 5px; }
+  .hero-caption { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } .hero-slide.is-active img { animation: none; transform: none; } .hero-indicator span { transition: none; } }

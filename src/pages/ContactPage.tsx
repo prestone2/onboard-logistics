@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <>
       <SEO {...contactPage.seo} />
-      <InternalPageHero {...contactPage.hero} breadcrumbLabel="Contact" />
+      <InternalPageHero {...contactPage.hero} />
       <section className="contact-section" aria-labelledby="contact-context-title"><Container className="contact-layout">
         <aside className="contact-context"><h2 className="corporate-heading" id="contact-context-title">Let’s Talk About Your Requirements.</h2><p className="corporate-prose">Tell us about your cargo, route or question. Our team will help identify the support and information you need.</p><address><span>Location</span><strong>{contactLocation}</strong></address></aside>
         <ContactEnquiryForm careerEnquiry={careerEnquiry} />
