@@ -1,7 +1,7 @@
 import { useEffect, useRef, type RefObject } from 'react'
 import { createPortal } from 'react-dom'
 import { NavLink } from 'react-router-dom'
-import { X } from 'lucide-react'
+import { X, ArrowUpRight } from 'lucide-react'
 import { navigation } from '../../data/navigation'
 import { Button } from '../ui/Button'
 import logo from '../../assets/brand/onboard-logistics-logo.png'
@@ -16,6 +16,7 @@ export function MobileNavigation({ onClose, returnFocusRef }: MobileNavigationPr
 
   useEffect(() => {
     const previouslyFocused = document.activeElement
+    const returnFocusTarget = returnFocusRef?.current
     const previousOverflow = document.body.style.overflow
     const root = document.getElementById('root')
     const previousInert = root?.inert ?? false
@@ -41,12 +42,14 @@ export function MobileNavigation({ onClose, returnFocusRef }: MobileNavigationPr
       document.body.style.overflow = previousOverflow
       document.removeEventListener('keydown', onKeyDown)
       desktop.removeEventListener('change', onDesktop)
-      const focusTarget = returnFocusRef?.current ?? previouslyFocused
+      const focusTarget = returnFocusTarget ?? previouslyFocused
       if (focusTarget instanceof HTMLElement && focusTarget.isConnected) focusTarget.focus()
     }
   }, [onClose, returnFocusRef])
 
   return createPortal(
+    <>
+    <div className="mobile-menu-backdrop" aria-hidden="true" onPointerDown={onClose} />
     <div ref={dialogRef} id="mobile-navigation" className="mobile-navigation" role="dialog" aria-modal="true" aria-labelledby="menu-title">
       <div className="mobile-navigation__top">
         <img src={logo} width="100" height="78" alt="Onboard Logistics Ltd" />
@@ -54,10 +57,11 @@ export function MobileNavigation({ onClose, returnFocusRef }: MobileNavigationPr
         <button className="menu-toggle" type="button" onClick={onClose} aria-label="Close navigation"><X size={26} /></button>
       </div>
       <nav aria-label="Mobile navigation">
-        {navigation.map(({ label, path }) => <NavLink key={path} to={path} end={path === '/'} onClick={onClose}>{label}</NavLink>)}
+        {navigation.map(({ label, path }) => <NavLink key={path} to={path} end={path === '/'} onClick={onClose}><span>{label}</span><ArrowUpRight size={16} aria-hidden="true" /></NavLink>)}
       </nav>
       <Button to="/request-quote" onClick={onClose}>Request a Quote</Button>
       <p className="mobile-navigation__note">Integrated freight. Regional execution.</p>
-    </div>, document.body,
+    </div>
+    </>, document.body,
   )
 }

@@ -21,6 +21,8 @@ export function ServiceExplorer() {
     let next = index
     if (event.key === 'ArrowRight') next = (index + 1) % tabs.length
     else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length
+    else if (event.key === 'ArrowDown' && window.matchMedia('(max-width: 767px)').matches) next = (index + 2) % tabs.length
+    else if (event.key === 'ArrowUp' && window.matchMedia('(max-width: 767px)').matches) next = (index + tabs.length - 2) % tabs.length
     else if (event.key === 'Home') next = 0
     else if (event.key === 'End') next = tabs.length - 1
     else return

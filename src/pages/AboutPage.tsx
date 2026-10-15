@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <SEO {...aboutPage.seo} />
-      <InternalPageHero {...aboutPage.hero} variant="light" breadcrumbLabel="About" />
+      <InternalPageHero {...aboutPage.hero} variant="light" />
       <section className="corporate-section" aria-labelledby="company-story-title"><Container className="corporate-split">
         <div><h2 className="corporate-heading" id="company-story-title">{companyStory.title}</h2><div className="corporate-prose">{companyStory.paragraphs.map(text => <p key={text}>{text}</p>)}</div></div>
         <EditorialPhoto image={pageImages.team} />

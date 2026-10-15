@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useId } from 'react'
+import { Ship } from 'lucide-react'
 import { homeCorridors } from '../../../data/home'
 
 // Shared equirectangular projection with the Natural Earth background.
@@ -58,6 +59,7 @@ function NetworkDrawing({ compact = false }: { compact?: boolean }) {
 export function CorridorNetwork() {
   return (
     <figure className="regional-network-diagram">
+      <div className="regional-map-origin"><Ship size={21} aria-hidden="true" /><div><strong>Mombasa</strong><span>Port gateway · Four regional corridors</span></div></div>
       <NetworkDrawing />
       <NetworkDrawing compact />
       <ol className="regional-mobile-legend">

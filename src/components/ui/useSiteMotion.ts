@@ -1,5 +1,5 @@
 import { useEffect, type RefObject } from 'react'
-import { useReducedMotion } from 'framer-motion'
+import { usePrefersReducedMotion as useReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 /** Enhance rendered content, including lazy routes, without hiding the server HTML. */
 export function useSiteMotion(root: RefObject<HTMLElement | null>, pathname: string) {
@@ -24,7 +24,7 @@ export function useSiteMotion(root: RefObject<HTMLElement | null>, pathname: str
         '.editorial-list > li', '.fleet-capabilities > li', '.safety-controls > li',
         '.corridor-list > li', '.quote-layout > *', '.service-explorer-panel',
         '.positioning-image img', '.fleet-visual img', '.safety-visual img',
-        '.editorial-photo img', '.service-image img', '.internal-hero-image',
+        '.editorial-photo img', '.services-photo img', '.internal-hero-image',
       ].join(',')).forEach(node => {
         if (nodes.has(node)) return
         nodes.add(node)

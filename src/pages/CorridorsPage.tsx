@@ -9,7 +9,7 @@ export default function CorridorsPage() {
   return (
     <>
       <SEO {...corridorsPage.seo} />
-      <InternalPageHero {...corridorsPage.hero} variant="light" breadcrumbLabel="Regional Corridors" />
+      <InternalPageHero {...corridorsPage.hero} variant="light" />
       <section className="corporate-section corporate-dark" aria-labelledby="network-title"><Container className="corporate-split corridor-overview">
         <CorridorRouteMap />
         <div><h2 className="corporate-heading" id="network-title">{networkIntro.title}</h2><p className="corporate-prose">{networkIntro.description}</p><ul className="network-route-key">{corridorDetails.map(route => <li key={route.id}><span>{route.number}</span><span>{route.origin} → {route.destination}</span></li>)}</ul></div>
