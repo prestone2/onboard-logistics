@@ -19,16 +19,18 @@ export const companyStory: ContentSection = {
 export const purpose = {
   eyebrow: 'Direction & Purpose', title: 'Our Direction and Purpose.',
   items: [
-    { id: 'vision', title: 'Our Vision', description: 'To build a secure, reliable and technologically supported regional logistics network across East and Central Africa.' },
-    { id: 'mission', title: 'Our Mission', description: 'To reduce supply-chain risk through disciplined freight operations, trained drivers, regulatory compliance, fleet readiness and continuous cargo visibility.' },
+    { id: 'vision', title: 'Our Vision', description: 'To be East Africa’s most trusted partner in logistics.' },
+    { id: 'mission', title: 'Our Mission', description: 'To provide safe, reliable, timely and cost-effective transport and clearing solutions that simplify trade, exceed customer expectations and create lasting value for our clients and partners.' },
   ] satisfies readonly EditorialItem[],
 }
 
-export const principlesIntro = { eyebrow: 'Core Principles', title: 'The Standards Behind Our Work.' }
+export const principlesIntro = { eyebrow: 'Core Values', title: 'Our Core Values.' }
 export const corePrinciples: readonly EditorialItem[] = [
-  { id: 'safety', title: 'Safety', description: 'Driver readiness, fleet condition and disciplined movement guide the way freight operations are planned.' },
-  { id: 'integrity', title: 'Regulatory & Customs Integrity', description: 'Documentation, customs procedures and transport compliance are treated as part of freight execution.' },
-  { id: 'accountability', title: 'Accountability & Traceability', description: 'Coordinated ownership and cargo visibility help keep operational responsibilities clear.' },
-  { id: 'driver-care', title: 'Driver Care', description: 'Training, fatigue awareness and driver welfare support the people responsible for cargo movement.' },
-  { id: 'agility', title: 'Operational Agility', description: 'Regional coordination and vetted capacity support responses to changing cargo and route requirements.' },
+  { id: 'reliability', title: 'Reliability', description: 'We deliver what we promise.' },
+  { id: 'integrity', title: 'Integrity', description: 'We operate with honesty and transparency.' },
+  { id: 'customer-focus', title: 'Customer Focus', description: 'Our customers are at the center of our business.' },
+  { id: 'efficiency', title: 'Efficiency', description: 'We continuously improve our processes and service delivery.' },
+  { id: 'safety', title: 'Safety', description: 'We protect people, cargo, vehicles, and the environment.' },
+  { id: 'professionalism', title: 'Professionalism', description: 'We maintain high standards in every operation.' },
+  { id: 'teamwork', title: 'Teamwork', description: 'We work together to achieve sustainable results.' },
 ]
