@@ -1,5 +1,14 @@
 import { PageShell } from '../components/layout/PageShell'
+import { contactAddress } from '../data/contact'
 
 export default function TermsPage() {
-  return <PageShell title="Terms" description="Our website terms are being prepared and will be published following legal review." />
+  return <PageShell title="Terms" description="Information about using the Onboard Logistics Ltd website and requesting logistics services.">
+    <p>Last updated: 28 October 2026.</p>
+    <section><h2>About this website</h2><p>This website provides general information about Onboard Logistics Ltd and its logistics services. Service descriptions and regional routes are introductory information. Availability and suitability for a particular shipment must be confirmed directly with the company.</p></section>
+    <section><h2>Enquiries, quotations and bookings</h2><p>Website content is not a binding quotation or a booking confirmation. Pricing, routing, capacity, transit arrangements, customs responsibilities, insurance and applicable service terms must be agreed separately in writing before work begins.</p><p>The contact and quote forms send enquiries to our team through a form delivery service. A receipt confirmation means the service accepted your enquiry for delivery; it does not create a booking, secure transport capacity or confirm acceptance of a shipment. If you do not receive a response, email info@onboardlogisticsltd.com to follow up.</p></section>
+    <section><h2>Information and illustrations</h2><p>Information may change as operational conditions and service availability change. Confirm details relevant to your shipment before making arrangements. Route maps are schematic and do not establish exact distances, transit times or clearance outcomes.</p><p>The website uses AI-generated illustrations of logistics scenes, including branded vehicles, facilities and personnel. These are illustrative and do not document actual company assets, employees or premises.</p></section>
+    <section><h2>Use of the website</h2><p>Use this website lawfully. Do not attempt to disrupt its operation, gain unauthorized access or submit malicious or misleading material. Only provide information you are authorized to share.</p><p>Company branding and website materials are provided for viewing and evaluating our services. Obtain permission before reusing company branding or materials for commercial purposes. Third-party materials remain subject to their respective owners’ rights.</p></section>
+    <section><h2>External links and availability</h2><p>External websites have their own terms and privacy practices. This website may be updated or temporarily unavailable. Contact the company directly to confirm operational arrangements.</p></section>
+    <section><h2>Questions</h2><p>Write to Onboard Logistics Ltd at {contactAddress.street}, {contactAddress.postal}, {contactAddress.locality}, {contactAddress.country} for questions about these terms. Separate written agreements govern contracted logistics services.</p></section>
+  </PageShell>
 }

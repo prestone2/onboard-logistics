@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { submitFreightQuote } from '../../services/enquiries'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Field } from './Field'
 import { SelectField } from './SelectField'
@@ -22,6 +24,30 @@ export function FreightQuoteForm() {
   const [step, setStep] = useState<FreightQuoteStep>(1)
   const [errors, setErrors] = useState<QuoteErrors>({})
   const [prepared, setPrepared] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [deliveryError, setDeliveryError] = useState('')
+  const sendingRef = useRef(false)
+  const honeypotRef = useRef<HTMLInputElement>(null)
+
+  async function deliver() {
+    if (sendingRef.current) return
+    if (honeypotRef.current?.value) {
+      setDeliveryError('Unable to send your request. Please reload the page and try again.')
+      return
+    }
+    sendingRef.current = true
+    setSending(true)
+    setDeliveryError('')
+    try {
+      await submitFreightQuote(data)
+      setPrepared(true)
+    } catch (error) {
+      setDeliveryError(error instanceof Error ? error.message : 'Unable to send your request. Please try again.')
+    } finally {
+      sendingRef.current = false
+      setSending(false)
+    }
+  }
   const advancedRef = useRef(false)
   const successRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -48,7 +74,7 @@ export function FreightQuoteForm() {
     if (step < quoteSteps.length) {
       advancedRef.current = true
       setStep((step + 1) as FreightQuoteStep)
-    } else setPrepared(true)
+    } else void deliver()
   }
 
   const previousStep = () => {
@@ -66,7 +92,8 @@ export function FreightQuoteForm() {
   )
 
   return (
-    <form ref={formRef} className="quote-form" onSubmit={submitStep} noValidate>
+    <form ref={formRef} className="quote-form" onSubmit={submitStep} aria-busy={sending} noValidate>
+      <div className="form-honeypot" aria-hidden="true"><label>Leave this field empty<input ref={honeypotRef} name="_honey" type="text" tabIndex={-1} autoComplete="off" /></label></div>
       <QuoteProgress currentStep={step} />
       <section className="quote-step" aria-labelledby="quote-step-title">
         <h2 id="quote-step-title" tabIndex={-1}>0{step} <span aria-hidden="true">/</span> {stepTitle}</h2>
@@ -111,9 +138,11 @@ export function FreightQuoteForm() {
         </div>}
       </section>
       {Object.keys(errors).length > 0 && <p className="form-summary-error" role="alert">Please review the highlighted fields before continuing.</p>}
+      <p className="form-privacy-note">Your details are processed by FormSubmit and emailed to our team. Read our <Link to="/privacy" target="_blank" rel="noopener noreferrer">Privacy Notice (opens in a new tab)</Link>.</p>
+      {deliveryError && <p className="form-summary-error" role="alert">{deliveryError}</p>}
       <div className="quote-navigation">
-        {step > 1 ? <button type="button" className="button button--secondary" onClick={previousStep}>{quoteFormCopy.previous}</button> : <span />}
-        <button type="submit" className="button button--primary"><span>{step === 4 ? quoteFormCopy.prepare : quoteFormCopy.next}</span><span aria-hidden="true">→</span></button>
+        {step > 1 ? <button type="button" className="button button--secondary" onClick={previousStep} disabled={sending}>{quoteFormCopy.previous}</button> : <span />}
+        <button type="submit" className="button button--primary" disabled={sending}><span>{sending ? 'Sending…' : step === 4 ? quoteFormCopy.prepare : quoteFormCopy.next}</span><span aria-hidden="true">→</span></button>
       </div>
     </form>
   )

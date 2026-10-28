@@ -37,14 +37,13 @@ export const quoteOptions = {
 } as const
 
 export const quoteFormCopy = {
-  next: 'Continue', previous: 'Previous', prepare: 'Prepare Quote Request',
-  successTitle: 'Quote request prepared successfully.',
-  successMessage: 'Online submission will be enabled once the enquiry service is connected.',
+  next: 'Continue', previous: 'Previous', prepare: 'Send Quote Request',
+  successTitle: 'Quote request received.',
+  successMessage: 'Thank you. Our team will review your shipment details and contact you about your request.',
   reviewTitle: 'Review your freight details',
 }
 
-// TODO(client verification): confirm the authorized quote enquiry recipient and
-// approved privacy/data retention handling before enabling online submission.
+// Enquiries are routed to the owner-approved info@onboardlogisticsltd.com inbox.
 
 export const quoteFieldLabels = {
   company: 'Company / Organization',

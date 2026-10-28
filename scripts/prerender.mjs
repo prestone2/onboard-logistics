@@ -62,7 +62,6 @@ try {
   const { SITE_URL } = siteModule
   siteUrl = (siteUrlOverride || SITE_URL).replace(/\/+$/, '')
   structuredDataScript = schemaModule.structuredDataScript
-  if (!siteUrlOverride) console.warn('VITE_SITE_URL is unset; prerendered canonicals and sitemap use the reserved fallback from src/config/site.ts. Configure the approved domain before deployment.')
   const manifest = JSON.parse(manifestText)
   const assetMap = Object.entries(manifest).map(([source, entry]) => [source.replace(/^\//, ''), `/${entry.file}`])
   const heroAsset = assetMap.find(([source]) => source.includes('hero-freight-placeholder.webp'))?.[1]
