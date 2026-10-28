@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { submitContactEnquiry } from '../../services/enquiries'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Field } from './Field'
 import { SelectField } from './SelectField'
@@ -12,6 +14,30 @@ export function ContactEnquiryForm({ careerEnquiry = false }: { careerEnquiry?: 
   const [data, setData] = useState<ContactFormData>(() => ({ ...initialContact, subject: careerEnquiry ? 'careers' : '' }))
   const [errors, setErrors] = useState<ContactErrors>({})
   const [prepared, setPrepared] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [deliveryError, setDeliveryError] = useState('')
+  const sendingRef = useRef(false)
+  const honeypotRef = useRef<HTMLInputElement>(null)
+
+  async function deliver() {
+    if (sendingRef.current) return
+    if (honeypotRef.current?.value) {
+      setDeliveryError('Unable to send your request. Please reload the page and try again.')
+      return
+    }
+    sendingRef.current = true
+    setSending(true)
+    setDeliveryError('')
+    try {
+      await submitContactEnquiry(data)
+      setPrepared(true)
+    } catch (error) {
+      setDeliveryError(error instanceof Error ? error.message : 'Unable to send your request. Please try again.')
+    } finally {
+      sendingRef.current = false
+      setSending(false)
+    }
+  }
   const statusRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { if (prepared) statusRef.current?.focus() }, [prepared])
@@ -30,7 +56,7 @@ export function ContactEnquiryForm({ careerEnquiry = false }: { careerEnquiry?: 
       window.requestAnimationFrame(() => document.getElementById(`contact-${invalidField}`)?.focus())
       return
     }
-    setPrepared(true)
+    void deliver()
   }
 
   if (prepared) return (
@@ -42,7 +68,8 @@ export function ContactEnquiryForm({ careerEnquiry = false }: { careerEnquiry?: 
   )
 
   return (
-    <form className="enquiry-form" onSubmit={submit} noValidate>
+    <form className="enquiry-form" onSubmit={submit} aria-busy={sending} noValidate>
+      <div className="form-honeypot" aria-hidden="true"><label>Leave this field empty<input ref={honeypotRef} name="_honey" type="text" tabIndex={-1} autoComplete="off" /></label></div>
       <h2>{contactFormCopy.title}</h2>
       <p className="form-required-note"><span aria-hidden="true">*</span> Required fields</p>
       <div className="form-grid">
@@ -54,7 +81,9 @@ export function ContactEnquiryForm({ careerEnquiry = false }: { careerEnquiry?: 
         <TextareaField id="contact-message" name="message" label={contactFields.message} rows={5} value={data.message} onChange={value => update('message', value)} error={errors.message} required />
       </div>
       {Object.keys(errors).length > 0 && <p className="form-summary-error" role="alert">Please review the highlighted fields.</p>}
-      <button className="button button--primary form-submit" type="submit"><span>{contactFormCopy.submit}</span><span aria-hidden="true">↗</span></button>
+      <p className="form-privacy-note">Your details are processed by FormSubmit and emailed to our team. Read our <Link to="/privacy" target="_blank" rel="noopener noreferrer">Privacy Notice (opens in a new tab)</Link>.</p>
+      {deliveryError && <p className="form-summary-error" role="alert">{deliveryError}</p>}
+      <button className="button button--primary form-submit" type="submit" disabled={sending}><span>{sending ? 'Sending…' : contactFormCopy.submit}</span><span aria-hidden="true">↗</span></button>
     </form>
   )
 }

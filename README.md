@@ -1,6 +1,6 @@
 # Onboard Logistics Ltd — Homepage and Core Corporate Pages
 
-Production-ready static corporate website for Onboard Logistics Ltd, Uganda. The existing Vite, React 19, TypeScript, Tailwind CSS 4, React Router, Framer Motion and Lucide architecture is preserved. The public site includes corporate pages, locally prepared contact and quote flows, and legal shells. No backend or enquiry delivery is connected.
+Static corporate website for Onboard Logistics Ltd, Uganda. The existing Vite, React 19, TypeScript, Tailwind CSS 4, React Router, Framer Motion and Lucide architecture is preserved. The public site includes corporate pages, locally prepared contact and quote flows, and legal shells. Enquiry delivery uses FormSubmit; inbox activation and real delivery verification remain pending.
 
 ## Development
 
@@ -209,7 +209,7 @@ The exact annual kilometers, 0% loss/demurrage, direct customs APIs, exact maint
 
 ### SEO, static output and domain configuration
 
-`src/config/site.ts` is the single public-origin source. Set `VITE_SITE_URL` to the approved production origin in the deployment environment; the reserved `https://example.com` fallback exists only so local builds can run and is a launch blocker. Do not include a trailing path or route in this value. `.env.example` documents the public site URL, future form endpoint variables and analytics ID; it contains no secret values.
+`src/config/site.ts` is the single public-origin source and defaults to the approved canonical origin, `https://www.onboardlogisticsltd.com`. `VITE_SITE_URL` can override it for other environments. Do not include a trailing path or route in this value. `.env.example` documents the public site URL, future form endpoint variables and analytics ID; it contains no secret values.
 
 `src/data/siteMetadata.ts` owns titles, descriptions, indexability and breadcrumb labels for every route. The reusable SEO component updates canonical, robots, Open Graph, Twitter and breadcrumb metadata when client navigation occurs. `scripts/prerender.mjs` produces route-specific HTML for all declared routes and a `dist/404.html`, using React server rendering and the Vite manifest to point local images at built assets. This keeps the current SPA architecture while giving crawlers route content and metadata before JavaScript runs. Configure the host to serve `/about/` from `dist/about/index.html` (and likewise for other routes), and return `dist/404.html` with HTTP status 404 for unknown routes.
 
@@ -252,7 +252,7 @@ The deployment target is not selected, so no host-specific header file has been 
 
 **SEO**
 
-- [ ] Set `VITE_SITE_URL` to the final canonical domain and choose the `www` or apex host.
+- [x] Configure the final canonical domain: `https://www.onboardlogisticsltd.com` (`www` host).
 - [ ] Verify all canonical tags and social previews on the deployed host.
 - [ ] Verify the generated sitemap and submit it to Search Console.
 - [ ] Replace and approve the 1200 × 630 OG image.
@@ -276,3 +276,24 @@ The deployment target is not selected, so no host-specific header file has been 
 - `npm run lint`: Oxlint.
 - No existing automated test suite is configured. Browser and deployed-header checks remain deployment-stage tasks.
 # onboard-logistics
+
+## Launch review — 28 October 2026
+
+- Canonical origin configured as `https://www.onboardlogisticsltd.com`.
+- Privacy and Terms now contain website-specific drafts reflecting the current browser-only enquiry flows, disabled analytics and illustrative imagery. Company/legal review remains required; hosting-specific privacy details remain pending. These pages remain noindex during review.
+- Owner confirmed existing company content is approved on 28 October 2026. Original numerical metrics, copy and imagery are retained; earlier content-verification reminders are historical. The added footer imagery disclosure was removed.
+- Production build, lint, generated legal-page content/headings/canonicals and mobile Chrome rendering of Privacy passed. Full cross-browser, navigation and end-to-end checks remain pending.
+- By request, enquiry integration, hosting and DNS configuration are deferred. Update the privacy notice when hosting and enquiry processing are configured.
+- Privacy reference: Uganda Personal Data Protection Office, https://pdpo.go.ug/.
+
+### Enquiry delivery configuration
+
+Both forms use FormSubmit AJAX to deliver to `info@onboardlogisticsltd.com`. The default public endpoint is in `src/config/enquiries.ts`; `VITE_CONTACT_ENDPOINT` and `VITE_QUOTE_ENDPOINT` can override it at build time. No SMTP credentials or private API keys are included in browser code.
+
+Before launch, submit a labelled test from each form and check the inbox (including spam). FormSubmit requires mailbox activation after the initial submission; click the activation link, then submit both tests again and confirm receipt and Reply-To behavior. Do not assume the initial activation submission was delivered as a customer enquiry. Inbox activation and real delivery have not yet been verified.
+
+Forms disable duplicate submission while sending, retain entries on errors, time out after 20 seconds and require a positive JSON acknowledgement. A hidden honeypot catches basic bots; FormSubmit also applies its service-side spam controls. No customer auto-response is enabled. Privacy copy now identifies FormSubmit and its documented 30-day submission archive.
+
+Checks: `node scripts/enquiries.test.mjs`, `npm run build`, `npm run lint`. Tests mock the transport and do not send email. Provider references: https://formsubmit.co/ajax-documentation and https://formsubmit.co/documentation.
+
+Current status: enquiry delivery is now configured; the earlier deferral is superseded. Hosting and DNS remain deferred.

@@ -28,8 +28,8 @@ export const routeMetadata: Readonly<Record<string, RouteMetadata>> = {
   '/careers': { ...careersPage.seo, breadcrumb: 'Careers', indexable: true },
   '/contact': { ...contactPage.seo, breadcrumb: 'Contact', indexable: true },
   '/request-quote': { ...quotePage.seo, breadcrumb: 'Freight Quotation', indexable: true },
-  '/privacy': { title: 'Privacy | Onboard Logistics Ltd', description: 'Our privacy notice is being prepared and will be published following legal review.', breadcrumb: 'Privacy', indexable: false },
-  '/terms': { title: 'Terms | Onboard Logistics Ltd', description: 'Our website terms are being prepared and will be published following legal review.', breadcrumb: 'Terms', indexable: false },
+  '/privacy': { title: 'Privacy | Onboard Logistics Ltd', description: 'How this website handles information when you browse or send an enquiry.', breadcrumb: 'Privacy', indexable: false },
+  '/terms': { title: 'Terms | Onboard Logistics Ltd', description: 'Information about using the Onboard Logistics Ltd website and requesting logistics services.', breadcrumb: 'Terms', indexable: false },
 }
 
 export const notFoundMetadata: RouteMetadata = {

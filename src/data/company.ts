@@ -8,9 +8,7 @@ export const company = {
   heroDescription: 'From the Port of Mombasa across the regional hinterland, Onboard Logistics Ltd combines cross-border freight, clearing expertise, fleet control and regional execution to keep supply chains moving safely, efficiently and on time.',
 }
 
-// Supplied blueprint claims: verify ALL metrics with the client before production
-// launch, especially 1,200,000+ annual safe kilometers, 100% fleet coverage,
-// and the scope of 24/7 monitoring. These are not independently verified facts.
+// Company copy and operating metrics approved by the owner, 28 October 2026.
 export const trustMetrics: readonly CompanyMetric[] = [
   { value: '1,200,000+', label: 'Safe Kilometers Driven Annually', icon: 'route' },
   { value: '100%', label: 'Asset-Backed Fleet & Vetted Third-Party Operations', icon: 'truck' },

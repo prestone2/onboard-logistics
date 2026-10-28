@@ -23,9 +23,9 @@ export const contactSubjects = [
   { value: 'general', label: 'General Enquiry' },
 ] as const
 export const contactFormCopy = {
-  title: 'Send an Enquiry', submit: 'Prepare Enquiry',
-  successTitle: 'Your enquiry has been prepared.',
-  successMessage: 'Online submission will be enabled once the contact service is connected.',
+  title: 'Send an Enquiry', submit: 'Send Enquiry',
+  successTitle: 'Your enquiry has been received.',
+  successMessage: 'Thank you for contacting Onboard Logistics Ltd. Our team will review your enquiry.',
 }
 
 export const contactFields = {
